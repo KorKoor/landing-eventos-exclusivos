@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Natalia Castro | Eventos de Ultra Lujo</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Montserrat:wght@200;300;400;500&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        serif: ['Cormorant Garamond', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#C5A358',
+                        dark: '#050505',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body { background-color: #050505; color: #ffffff; margin: 0; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+        
+        /* Carrusel Engine */
+        .hide-scroll::-webkit-scrollbar { display: none; }
+        .hide-scroll { -ms-overflow-style: none; scrollbar-width: none; scroll-behavior: smooth; }
+        
+        .glass { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(15px); }
+        .text-premium {
+            background: linear-gradient(to right, #ffffff 30%, #a1a1a1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .scroll-indicator {
+            width: 1px; height: 60px; background: linear-gradient(to bottom, #C5A358, transparent);
+            position: absolute; bottom: 40px; left: 50%; animation: scrollDown 2s infinite;
+        }
+        @keyframes scrollDown {
+            0% { transform: scaleY(0); transform-origin: top; }
+            50% { transform: scaleY(1); transform-origin: top; }
+            51% { transform: scaleY(1); transform-origin: bottom; }
+            100% { transform: scaleY(0); transform-origin: bottom; }
+        }
+
+        /* Estilo para las Cards */
+        .portfolio-card { transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1); }
+        
+        /* Select dropdown fix */
+        select option { background-color: #050505; color: #fff; }
+    </style>
+</head>
+<body class="font-sans antialiased overflow-x-hidden">
+
+    <nav id="navbar" class="fixed top-0 w-full z-[100] transition-all duration-700 py-8 px-6 md:px-16">
+        <div class="max-w-[1800px] mx-auto flex justify-between items-center">
+            <a href="#" class="font-serif italic text-2xl md:text-3xl tracking-tighter group">
+                Natalia Castro<span class="text-gold transition-all duration-500 group-hover:pl-2">.</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-12 text-[10px] tracking-[0.4em] uppercase font-medium">
+                <a href="#inicio" class="hover:text-gold transition-colors">Inicio</a>
+                <a href="#nosotros" class="hover:text-gold transition-colors">Nosotros</a>
+                <a href="#portafolio" class="hover:text-gold transition-colors">Portafolio</a>
+                <a href="#contacto" class="px-8 py-3 border border-white/20 hover:border-gold hover:text-gold transition-all rounded-full glass">Contacto</a>
+            </div>
+        </div>
+    </nav>
+
+    <div id="inicio" style="height: 400vh;" class="relative">
+        <div class="sticky top-0 w-full h-screen overflow-hidden bg-black">
+            <canvas id="Canvas-Scroll" class="w-full h-full object-cover opacity-60"></canvas>
+            <div id="hero-text" class="absolute inset-0 flex flex-col items-center justify-center text-center px-4 pointer-events-none">
+                <span class="text-gold tracking-[0.6em] text-[10px] md:text-[12px] uppercase mb-8 reveal">The Art of Event Architecture</span>
+                <h1 class="text-5xl md:text-9xl font-serif italic leading-none reveal delay-200">
+                    Tú lo sueñas.<br>
+                    <span class="font-sans not-italic font-extralight text-premium">Realidad Sublime.</span>
+                </h1>
+                <div class="scroll-indicator"></div>
+            </div>
+        </div>
+    </div>
+
+    <section id="nosotros" class="py-32 bg-dark relative z-10 px-6 md:px-16">
+        <div class="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div class="reveal">
+                <span class="text-gold text-[10px] tracking-[0.5em] uppercase block mb-4">La Arquitecta</span>
+                <h2 class="text-5xl md:text-7xl font-serif italic mb-8">Sobre Nosotros.</h2>
+                <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8">
+                    En Natalia Castro, no solo organizamos eventos; esculpimos recuerdos. Con años de experiencia en la industria del ultra lujo, transformamos espacios ordinarios en realidades sublimes, cuidando cada detalle con una obsesión artística inigualable.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-12">
+                    <div class="p-6 border border-white/5 rounded-2xl glass">
+                        <h3 class="text-gold text-[12px] tracking-[0.4em] uppercase mb-3">Nuestra Misión</h3>
+                        <p class="text-gray-400 text-sm font-light leading-relaxed">Elevar el estándar de la celebración mediante diseños vanguardistas y una ejecución impecable, creando experiencias inmersivas que trascienden el tiempo.</p>
+                    </div>
+                    <div class="p-6 border border-white/5 rounded-2xl glass">
+                        <h3 class="text-gold text-[12px] tracking-[0.4em] uppercase mb-3">Nuestra Visión</h3>
+                        <p class="text-gray-400 text-sm font-light leading-relaxed">Ser el referente global en la arquitectura de eventos de ultra lujo, redefiniendo constantemente la intersección entre el arte, la tecnología y la hospitalidad.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="reveal delay-200 relative h-[60vh] rounded-2xl overflow-hidden group">
+                <img src="./assets/carousel/Evento11.jpg" alt="Natalia Castro - Sobre Nosotros" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105 opacity-80">
+                <div class="absolute inset-0 border border-white/10 m-6 rounded-xl pointer-events-none"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="portafolio" class="py-40 bg-dark overflow-hidden">
+        <div class="max-w-[1800px] mx-auto px-6 mb-24 flex justify-between items-end reveal">
+            <div>
+                <span class="text-gold text-[10px] tracking-[0.5em] uppercase block mb-4">Portfolio</span>
+                <h2 class="text-5xl md:text-8xl font-serif italic">Obras Destacadas.</h2>
+            </div>
+            <div class="hidden md:flex gap-6">
+                <button id="prev-btn" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all active:scale-90">
+                    <svg class="w-6 h-6 rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="1.2"></path></svg>
+                </button>
+                <button id="next-btn" class="w-16 h-16 rounded-full border border-white/10 flex items-center justify-center hover:border-gold hover:text-gold transition-all active:scale-90">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-width="1.2"></path></svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="drag-carousel" class="flex gap-10 px-6 md:px-16 overflow-x-auto hide-scroll cursor-grab snap-x snap-mandatory pb-20 reveal delay-200">
+            
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento13.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Gala de Élite">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Gala de Élite</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Noche en Versalles</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Una fusión entre arquitectura clásica y tecnología lumínica de vanguardia.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento12.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Atmósfera">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Atmósfera</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Inmersión Digital</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Donde el arte visual y la experiencia sensorial convergen en un solo espacio.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento11.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Momentos">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Momentos</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">El Gran Paseo</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Diseño floral y estructural para entradas que roban el aliento.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento10.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Alta Costura">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Alta Costura</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Pasarela de Cristal</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Escenografía minimalista que cede el protagonismo a la elegancia pura y líneas limpias.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento9.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Bodas de Autor">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Bodas de Autor</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Romance Eterno</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Ceremonias íntimas con un despliegue floral majestuoso bajo un cielo de diseño.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento8.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Corporativo Élite">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Corporativo Élite</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Cumbre de Líderes</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Espacios diseñados para la exclusividad, el networking de alto nivel y la estética corporativa.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento7.webp" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Celebraciones">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Celebraciones</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Jardín Botánico</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">La naturaleza domesticada en un entorno de lujo salvaje e inolvidable para sus invitados.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento6.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Vanguardia">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Vanguardia</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Luces de Neón</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Fiestas privadas con temática futurista, sonido envolvente de última generación y mixología de autor.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento3.jpg" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Destinos">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Destinos</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Oasis en el Desierto</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Montajes efímeros en parajes exóticos asegurando todas las comodidades de un resort de cinco estrellas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="portfolio-card min-w-[85vw] md:min-w-[40vw] h-[70vh] relative snap-center snap-always group overflow-hidden bg-dark">
+                <img src="./assets/carousel/Evento2.avif" class="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110 pointer-events-none" alt="Arte y Cultura">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+                <div class="absolute inset-0 p-8 md:p-16 flex flex-col justify-end">
+                    <div class="transform translate-y-6 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+                        <span class="text-gold text-[10px] tracking-[0.4em] uppercase mb-4 block opacity-0 group-hover:opacity-100 transition-opacity delay-100">Arte & Cultura</span>
+                        <h3 class="text-3xl md:text-5xl font-serif italic mb-6">Galería Sensorial</h3>
+                        <div class="max-h-0 group-hover:max-h-60 overflow-hidden transition-all duration-700 ease-in-out opacity-0 group-hover:opacity-100">
+                            <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-8 max-w-md">Lanzamientos de marca que combinan exposiciones de arte contemporáneo con alta gastronomía.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contacto" class="py-40 bg-dark px-6 md:px-16 relative">
+        <div class="max-w-[1800px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+            
+            <div class="reveal flex flex-col justify-center h-full">
+                <h2 class="text-6xl md:text-8xl lg:text-9xl font-serif italic leading-none mb-8">
+                    Hazlo<br>
+                    <span class="text-premium font-sans not-italic font-light">Realidad.</span>
+                </h2>
+                <p class="text-gray-400 text-sm md:text-lg font-light leading-relaxed mb-16 max-w-lg">
+                    Cada gran historia comienza con un encuentro. Comparta su visión con nosotros y permítanos diseñar una experiencia que desafíe la imaginación y supere toda expectativa.
+                </p>
+
+                <div class="space-y-10">
+                    <div>
+                        <span class="block text-[10px] tracking-[0.4em] text-gold uppercase mb-3">Contacto Directo</span>
+                        <a href="mailto:hola@nataliacastro.com" class="text-xl md:text-2xl font-light hover:text-gold transition-colors duration-300">hola@nataliacastro.com</a>
+                    </div>
+                    <div>
+                        <span class="block text-[10px] tracking-[0.4em] text-gold uppercase mb-3">Atención Global</span>
+                        <p class="text-lg md:text-xl font-light text-gray-300">
+                            Ags, Aguascalientes<br>
+                            <span class="text-sm text-gray-500 mt-2 block">Consultas privadas únicamente bajo cita previa.</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reveal delay-200 glass p-10 md:p-16 rounded-[2rem] border border-white/5 relative overflow-hidden group">
+                <div class="absolute -top-20 -right-20 w-64 h-64 bg-gold/10 blur-[80px] rounded-full pointer-events-none transition-transform duration-1000 group-hover:scale-150"></div>
+                
+                <form class="relative z-10 space-y-10">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="relative">
+                            <input type="text" id="nombre" placeholder=" " required class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light">
+                            <label for="nombre" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold cursor-text">Nombre Completo</label>
+                        </div>
+                        <div class="relative">
+                            <input type="tel" id="telefono" placeholder=" " required class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light">
+                            <label for="telefono" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold cursor-text">Teléfono</label>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="relative">
+                            <input type="email" id="email" placeholder=" " required class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light">
+                            <label for="email" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold cursor-text">Correo Electrónico</label>
+                        </div>
+                        <div class="relative">
+                            <select id="tipo" class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light appearance-none cursor-pointer">
+                                <option value="" disabled selected hidden></option>
+                                <option value="boda">Boda de Autor</option>
+                                <option value="corporativo">Gala Corporativa</option>
+                                <option value="privado">Celebración Privada</option>
+                                <option value="otro">Otro</option>
+                            </select>
+                            <div class="absolute right-0 top-3 pointer-events-none text-gold text-xs">▼</div>
+                            <label for="tipo" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-valid:-top-4 peer-valid:text-[10px] peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold">Tipo de Evento</label>
+                        </div>
+                    </div>
+
+                    <div class="relative">
+                        <input type="text" id="fecha_lugar" placeholder=" " class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light">
+                        <label for="fecha_lugar" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold cursor-text">Fecha y Locación Estimada (Opcional)</label>
+                    </div>
+
+                    <div class="relative mt-4">
+                        <textarea id="mensaje" rows="3" placeholder=" " required class="peer w-full bg-transparent border-b border-white/20 py-3 text-white focus:outline-none focus:border-gold transition-colors text-sm font-light resize-none"></textarea>
+                        <label for="mensaje" class="absolute left-0 top-3 text-[10px] tracking-[0.2em] text-gray-500 uppercase transition-all peer-placeholder-shown:text-sm peer-placeholder-shown:top-3 peer-focus:-top-4 peer-focus:text-[10px] peer-focus:text-gold cursor-text">Describa la visión de su evento</label>
+                    </div>
+
+                    <button type="submit" class="w-full mt-6 py-6 bg-transparent border border-gold text-gold text-[10px] tracking-[0.4em] uppercase font-bold hover:bg-gold hover:text-dark transition-all duration-500 flex justify-center items-center gap-4 group">
+                        Solicitar Consulta Privada
+                        <svg class="w-4 h-4 transform group-hover:translate-x-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // --- 1. LÓGICA DEL CANVAS SCROLL ---
+        const initCanvasScroll = () => {
+            const canvas = document.getElementById('Canvas-Scroll');
+            const container = document.getElementById('inicio'); 
+            if (!canvas || !container) return;
+
+            const context = canvas.getContext('2d');
+            const frameCount = 40; 
+
+            const currentFrame = index => {
+                const num = index.toString().padStart(4, '0');
+                const time = ((index - 1) * 0.2).toFixed(2);
+                return `assets/video-frames/frame_${num}_${time}s.png`;
+            };
+
+            const images = [];
+            const imageCache = { loaded: 0 };
+
+            for (let i = 1; i <= frameCount; i++) {
+                const img = new Image();
+                img.src = currentFrame(i);
+                img.onload = () => {
+                    imageCache.loaded++;
+                    if (i === 1) render(); 
+                };
+                img.onerror = () => console.warn(`No se encontró: ${img.src}`);
+                images.push(img);
+            }
+
+            const setCanvasSize = () => {
+                const dpr = window.devicePixelRatio || 1;
+                canvas.width = window.innerWidth * dpr;
+                canvas.height = window.innerHeight * dpr;
+                context.scale(dpr, dpr);
+                render(); 
+            };
+
+            const render = () => {
+                const scrollTop = window.scrollY;
+                const maxScroll = container.offsetHeight - window.innerHeight;
+                const scrollFraction = Math.max(0, Math.min(1, scrollTop / maxScroll));
+                
+                const frameIndex = Math.min(
+                    frameCount - 1,
+                    Math.floor(scrollFraction * frameCount)
+                );
+
+                const img = images[frameIndex];
+                
+                if (img && img.complete && img.naturalWidth !== 0) {
+                    const screenWidth = window.innerWidth;
+                    const screenHeight = window.innerHeight;
+                    const imgRatio = img.naturalWidth / img.naturalHeight;
+                    const canvasRatio = screenWidth / screenHeight;
+
+                    let drawW, drawH, drawX, drawY;
+
+                    if (canvasRatio > imgRatio) {
+                        drawW = screenWidth;
+                        drawH = screenWidth / imgRatio;
+                        drawX = 0;
+                        drawY = (screenHeight - drawH) / 2;
+                    } else {
+                        drawW = screenHeight * imgRatio;
+                        drawH = screenHeight;
+                        drawX = (screenWidth - drawW) / 2;
+                        drawY = 0;
+                    }
+
+                    context.clearRect(0, 0, screenWidth, screenHeight);
+                    context.drawImage(img, drawX, drawY, drawW, drawH);
+                }
+            };
+
+            window.addEventListener('scroll', () => {
+                requestAnimationFrame(render);
+            }, { passive: true });
+
+            window.addEventListener('resize', setCanvasSize);
+            setCanvasSize();
+        };
+
+        // --- 2. LÓGICA CARRUSEL ---
+        const carousel = document.getElementById('drag-carousel');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+
+        let isDown = false;
+        let startX;
+        let scrollLeft;
+
+        nextBtn.addEventListener('click', () => {
+            const width = carousel.querySelector('.portfolio-card').offsetWidth + 40;
+            carousel.scrollBy({ left: width, behavior: 'smooth' });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            const width = carousel.querySelector('.portfolio-card').offsetWidth + 40;
+            carousel.scrollBy({ left: -width, behavior: 'smooth' });
+        });
+
+        carousel.addEventListener('mousedown', (e) => {
+            isDown = true;
+            carousel.classList.remove('snap-x', 'snap-mandatory');
+            startX = e.pageX - carousel.offsetLeft;
+            scrollLeft = carousel.scrollLeft;
+        });
+        carousel.addEventListener('mouseleave', () => {
+            isDown = false;
+            carousel.classList.add('snap-x', 'snap-mandatory');
+        });
+        carousel.addEventListener('mouseup', () => {
+            isDown = false;
+            carousel.classList.add('snap-x', 'snap-mandatory');
+        });
+        carousel.addEventListener('mousemove', (e) => {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - carousel.offsetLeft;
+            const walk = (x - startX) * 2;
+            carousel.scrollLeft = scrollLeft - walk;
+        });
+
+        // --- 3. REVEAL & NAVBAR ---
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('glass', 'py-4');
+                nav.classList.remove('py-8');
+            } else {
+                nav.classList.remove('glass', 'py-4');
+                nav.classList.add('py-8');
+            }
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Inicializar Canvas al cargar
+        document.addEventListener('DOMContentLoaded', initCanvasScroll);
+    </script>
+</body>
+</html>

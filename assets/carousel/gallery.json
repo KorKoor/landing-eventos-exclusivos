@@ -1,0 +1,26 @@
+[
+  {
+    "src": "Evento13.jpg",
+    "alt": "Instalación de gala con iluminación arquitectónica",
+    "tag": "Gala de Élite",
+    "title": "Noche en Versalles",
+    "description": "Una fusión entre arquitectura clásica y tecnología lumínica de vanguardia.",
+    "cta": "Explorar Proyecto"
+  },
+  {
+    "src": "Evento12.jpg",
+    "alt": "Espacio inmersivo con proyección y diseño ambiental",
+    "tag": "Atmósfera",
+    "title": "Inmersión Digital",
+    "description": "Donde el arte visual y la experiencia sensorial convergen en un solo espacio.",
+    "cta": "Explorar Proyecto"
+  },
+  {
+    "src": "Evento11.jpg",
+    "alt": "Entrada monumental con diseño floral y estructural",
+    "tag": "Momentos",
+    "title": "El Gran Paseo",
+    "description": "Diseño floral y estructural para entradas que roban el aliento.",
+    "cta": "Explorar Proyecto"
+  }
+]
