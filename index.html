@@ -36,10 +36,13 @@
         
         .glass { background: rgba(10, 10, 10, 0.7); backdrop-filter: blur(15px); }
         .text-premium {
-            background: linear-gradient(to right, #ffffff 30%, #a1a1a1 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        background: linear-gradient(to right, #ffffff 30%, #a1a1a1 100%);
+        background-clip: text; /* estándar */
+        -webkit-background-clip: text; /* compatibilidad */
+        color: transparent; /* fallback */
+        -webkit-text-fill-color: transparent; /* compatibilidad */
         }
+
 
         .scroll-indicator {
             width: 1px; height: 60px; background: linear-gradient(to bottom, #C5A358, transparent);
@@ -57,6 +60,55 @@
         
         /* Select dropdown fix */
         select option { background-color: #050505; color: #fff; }
+        /* Ajustes generales para móviles */
+@media (max-width: 768px) {
+    body {
+        font-size: 14px; /* texto más legible en pantallas pequeñas */
+        padding: 0 10px;
+    }
+
+    .portfolio-card {
+        width: 100%; /* que las cards ocupen todo el ancho */
+        margin-bottom: 20px;
+    }
+
+    .scroll-indicator {
+        bottom: 20px;
+        height: 40px; /* más corto en móvil */
+    }
+
+    .text-premium {
+        font-size: 1.2rem; /* ajusta tamaño del texto premium */
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas (teléfonos en vertical) */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    .portfolio-card {
+        padding: 10px;
+    }
+
+    .scroll-indicator {
+        display: none; /* opcional: ocultar indicador en pantallas muy pequeñas */
+    }
+}
+
+/* Ajustes para pantallas horizontales (landscape) */
+@media (orientation: landscape) {
+    body {
+        font-size: 15px;
+    }
+
+    .portfolio-card {
+        display: inline-block;
+        width: 48%; /* dos cards por fila en horizontal */
+    }
+}
+
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden">
